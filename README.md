@@ -1,2 +1,2 @@
-# DenoStack
-A simple website built with raw Deno 2
+# denowebs
+A simple framwework built with raw Deno 2
