@@ -1,14 +1,14 @@
 import Handlebars from "npm:handlebars";
 import type { HelperOptions } from "handlebars";
-import config from "../config/paths.ts";
-const views = config?.views ?? "./app/views";
-const partials = config?.partials ?? "./app/partials";
+import config from "./config.ts";
+const views = config.paths.views;
+const partials = config.paths.partials;
 export async function registerPartials(folderPath: string) {
+  if (!folderPath.endsWith("/")) {
+    folderPath += "/";
+  }
   for await (const file of Deno.readDir(folderPath)) {
     const partialName = file.name.replace(".hbs", "");
-    if (!folderPath.endsWith("/")) {
-      folderPath += "/";
-    }
     console.log(partialName);
     const partialPath = folderPath + file.name;
     const opened = await Deno.readTextFile(partialPath);
